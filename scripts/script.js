@@ -16,28 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
    * the current entry for each journal-entry element.
    */
 
-  let url = ""  // SET URL 
+  let url = "https://cse110lab6.herokuapp.com/entries"  // SET URL 
 
   fetch(url)
-    .then( /* FILL IN RESPONSE HANDLING HERE */ )
+    .then(response => response.json())
     .then(entries => {
       entries.forEach((entry) => {
        
         let newPost;  
 
-
         // CODE GOES HERE vvv
         
-
-
-
-
-
-
+        newPost = document.createElement("journal-entry");
+        newPost.entry = entry;
+        document.querySelector("main").appendChild(newPost);
 
         // CODE GOES HERE ^^^
-
-
 
         /* ------------- do not edit this code, it is for your debugging purposes ------------- */
         try {

@@ -50,7 +50,7 @@ class JournalEntry extends HTMLElement {
         `;
 
     // create a shadow root for this web component
-    this.attachShadow({ mode: 'open' })
+    this.attachShadow({ mode: 'open' }) 
     // attach cloned content of template to shadow DOM 
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
@@ -73,6 +73,11 @@ class JournalEntry extends HTMLElement {
      */
     
     // CODE GOES HERE
+    
+    //this.setAttribute("entry-title", entry.title);
+    this.shadowRoot.querySelector(".entry-title").innerText = entry.title;
+    this.shadowRoot.querySelector(".entry-date").innerText = entry.date;
+    this.shadowRoot.querySelector(".entry-content").innerText = entry.content;
 
     if (entry.image) {
       let entryImage;
@@ -85,9 +90,11 @@ class JournalEntry extends HTMLElement {
 
       // CODE GOES HERE vvv
 
-
-
-
+      entryImage = new Image();
+      entryImage.className = "entry-image";
+      entryImage.src = entry.image['src'];
+      entryImage.alt = entry.image['alt'];
+      this.shadowRoot.querySelector("article").appendChild(entryImage);
 
       // CODE GOES HERE ^^^
 
@@ -111,10 +118,12 @@ class JournalEntry extends HTMLElement {
 
       // CODE GOES HERE vvv
 
-
-
-
-
+      entryAudio = new Audio();
+      entryAudio.className = "entry-audio";
+      entryAudio.src = entry.audio;
+      entryAudio.removeAttribute("preload");
+      entryAudio.setAttribute("controls", "");
+      this.shadowRoot.querySelector("article").appendChild(entryAudio);
 
       // CODE GOES HERE ^^^
       
